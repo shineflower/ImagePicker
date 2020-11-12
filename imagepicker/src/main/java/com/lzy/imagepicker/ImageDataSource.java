@@ -79,11 +79,12 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
         imageFolders.clear();
         if (data != null) {
             ArrayList<ImageItem> allImages = new ArrayList<>();   //所有图片的集合,不分文件夹
-            while (data.moveToNext()) {
+            data.moveToFirst();
+            do {
                 //查询数据
                 String imageName = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[0]));
                 String imagePath = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[1]));
-                
+
                 File file = new File(imagePath);
                 if (!file.exists() || file.length() <= 0) {
                     continue;
@@ -120,7 +121,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
                 } else {
                     imageFolders.get(imageFolders.indexOf(imageFolder)).images.add(imageItem);
                 }
-            }
+            } while (data.moveToNext());
             //防止没有图片报异常
             if (data.getCount() > 0 && allImages.size()>0) {
                 //构造所有图片的集合
