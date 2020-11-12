@@ -24,7 +24,7 @@ Android自定义相册，完全仿微信UI，实现了拍照、图片选择（�
 
 使用前，对于Android Studio的用户，可以选择添加:
 ```java
-	compile 'com.lzy.widget:imagepicker:0.6.1'  //指定版本
+	implementation 'com.github.shineflower:ImagePicker:0.5.3'  //指定版本
 ```
 
 ## 2.功能和参数含义
